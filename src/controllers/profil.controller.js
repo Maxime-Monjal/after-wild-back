@@ -5,15 +5,15 @@ const router = express.Router();
 
 router.get("/:id", (req, res) => {
   connection.query(
-    "SELECT * from wilders WHERE idwilders = ?",
+    `SELECT * FROM wilder WHERE idwilders = ?`,
     [req.params.id],
-    (err, results) => {
-      if (err) {
-        res.status(500).json(err);
-      } else if (results.length < 1) {
-        res.status(404).send("Désolé mais ce wilder n'existe pas!");
+    (error, result) => {
+      if (error) {
+        res.status(500).send(error);
+      } else if (result.length === 0) {
+        res.sendStatus(404);
       } else {
-        res.status(200).json(results[0]);
+        res.status(200).json(result[0]);
       }
     }
   );

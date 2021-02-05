@@ -4,7 +4,7 @@ const connection = require("../../config/config");
 const router = express.Router();
 
 router.get("/", (req, res) => {
-  connection.query("SELECT * from wilders", (err, results) => {
+  connection.query("SELECT * from wilder", (err, results) => {
     if (err) {
       console.log(err);
       res.status(500).send(err);
